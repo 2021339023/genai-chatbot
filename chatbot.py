@@ -12,7 +12,7 @@ st.set_page_config(
     page_icon="🤖",
     layout="centered",
 )
-st.title("💬 Generative AI Chatbot_developed by Md. Shipon")
+st.title("💬 I am your assistant, ask anythings")
 
 # initiate chat history
 if "chat_history" not in st.session_state:
