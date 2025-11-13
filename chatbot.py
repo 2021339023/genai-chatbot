@@ -12,7 +12,7 @@ st.set_page_config(
     page_icon="🤖",
     layout="centered",
 )
-st.title("💬 I am your assistant, ask anythings")
+st.title("💬 Welcome from Shipo")
 
 # initiate chat history
 if "chat_history" not in st.session_state:
