@@ -57,8 +57,8 @@ load_dotenv()
 # --- Streamlit Page Configuration ---
 # Use a built-in theme (e.g., 'dark') and better layout options
 st.set_page_config(
-    page_title="🤖 AI Chat Assistant",
-    #page_icon="✨",
+    page_title=" AI Chat Assistant",
+    page_icon="🤖",
     layout="wide", # Use 'wide' layout for more space
     initial_sidebar_state="expanded" # Keep the sidebar open by default
 )
