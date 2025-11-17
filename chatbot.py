@@ -81,7 +81,7 @@ with st.sidebar:
     # Add a clear way to reset the chat
     if st.button("🔄 Clear Chat History"):
         st.session_state.chat_history = []
-        st.experimental_rerun()
+        st.rerun()
 
 # --- Main Page Title and Header ---
 st.header("💬 Shipo's Groq-Powered Chatbot", divider='rainbow')
