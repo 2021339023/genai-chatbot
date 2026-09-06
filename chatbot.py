@@ -19,7 +19,7 @@ st.set_page_config(
 with st.sidebar:
     st.image("https://cdn-icons-png.flaticon.com/512/3592/3592078.png", width=150)
     st.title("AI Assistant Settings")
-    st.markdown("Powered by **llama-3.3-70b-versatile** via **Groq API**.")
+    st.markdown("Powered by **openai/gpt-oss-20b** via **Groq API**.")
     
     if st.button("🔄 Clear Chat History"):
         st.session_state.chat_history = []
@@ -39,7 +39,7 @@ if not groq_api_key:
     st.error("⚠️ GROQ_API_KEY not found in environment variables or .env file.")
 else:
     llm = ChatGroq(
-        model="llama-3.3-70b-versatile",
+        model="openai/gpt-oss-20b",  # Active Groq model ID
         temperature=0.0,
         groq_api_key=groq_api_key
     )
