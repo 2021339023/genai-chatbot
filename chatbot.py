@@ -4,7 +4,7 @@ import streamlit as st
 from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 
-# Load environment variables
+# Load environment variables from .env file
 load_dotenv()
 
 # --- Streamlit Page Configuration ---
@@ -15,7 +15,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# --- Sidebar ---
+# --- Sidebar Configuration ---
 with st.sidebar:
     st.image("https://cdn-icons-png.flaticon.com/512/3592/3592078.png", width=150)
     st.title("AI Assistant Settings")
@@ -25,10 +25,10 @@ with st.sidebar:
         st.session_state.chat_history = []
         st.rerun()
 
-# --- Header ---
+# --- Main App Header ---
 st.header("💬 Shipo's Groq-Powered Chatbot", divider='rainbow')
 
-# Initialize session state for UI display and LangChain object history
+# Initialize session state for chat history
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
@@ -50,19 +50,19 @@ else:
         with st.chat_message(role):
             st.markdown(message.content)
 
-    # --- User Input ---
+    # --- User Input Handler ---
     user_prompt = st.chat_input("Type your message here...")
 
     if user_prompt:
-        # Display user message
+        # Display user message instantly on UI
         with st.chat_message("user"):
             st.markdown(user_prompt)
             
-        # Append user message as HumanMessage
+        # Append to history as a HumanMessage object
         st.session_state.chat_history.append(HumanMessage(content=user_prompt))
 
+        # Generate LLM response with a loading spinner
         with st.spinner("Thinking..."):
-            # Construct message list with SystemMessage first
             messages = [
                 SystemMessage(content="You are a helpful assistant."),
                 *st.session_state.chat_history
