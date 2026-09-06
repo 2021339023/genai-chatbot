@@ -26,7 +26,7 @@ for message in st.session_state.chat_history:
 
 # llm initiate
 llm = ChatGroq(
-    model="llama-3.1-8b-instant",
+    model="meta-llama/llama-4-scout-17b-16e-instruct",
     temperature=0.0,
 )
 
@@ -77,7 +77,7 @@ with st.sidebar:
     
     # You could add user-configurable options here later, like temperature.
     st.subheader("Model Details")
-    st.info(f"Model: `llama-4-scout-17b-16e-instruct`")
+    st.info(f"Model: `meta-llama/llama-4-scout-17b-16e-instruct`")
     
     # Add a clear way to reset the chat
     if st.button("🔄 Clear Chat History"):
@@ -99,7 +99,7 @@ if not groq_api_key:
     st.error("GROQ_API_KEY not found. Please set it in your environment variables.")
 else:
     llm = ChatGroq(
-        model="llama-4-scout-17b-16e-instruct",
+        model="meta-llama/llama-4-scout-17b-16e-instruct",
         temperature=0.0,
         groq_api_key=groq_api_key # Pass key explicitly
     )
