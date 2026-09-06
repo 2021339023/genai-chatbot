@@ -9,24 +9,80 @@ load_dotenv()
 
 # --- Streamlit Page Configuration ---
 st.set_page_config(
-    page_title="AI Chat Assistant",
+    page_title="Shipo's AI Assistant",
     page_icon="🤖",
-    layout="wide",
+    layout="centered", # 'centered' layoutchat এর জন্য বেশি সুন্দর দেখায়
     initial_sidebar_state="expanded"
 )
 
+# --- Custom CSS for Attractive UI ---
+st.markdown("""
+    <style>
+    /* Main Background & Font */
+    .stApp {
+        background-color: #0e1117;
+        color: #ffffff;
+    }
+    
+    /* Header Styling */
+    h1 {
+        color: #00adb5;
+        font-family: 'Inter', sans-serif;
+    }
+    
+    /* Chat Input Field Customization */
+    .stChatInput input {
+        background-color: #1f2833 !important;
+        color: #ffffff !important;
+        border-radius: 12px !important;
+        border: 1px solid #45567d !important;
+    }
+    
+    /* Sidebar Styling */
+    [data-testid="stSidebar"] {
+        background-color: #161b22;
+        border-right: 1px solid #30363d;
+    }
+    
+    /* Custom Buttons */
+    .stButton button {
+        background-color: #ff4c4c;
+        color: white;
+        border-radius: 8px;
+        border: none;
+        width: 100%;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    .stButton button:hover {
+        background-color: #ff1e1e;
+        color: white;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # --- Sidebar Configuration ---
 with st.sidebar:
-    st.image("https://cdn-icons-png.flaticon.com/512/3592/3592078.png", width=150)
-    st.title("AI Assistant Settings")
-    st.markdown("Powered by **openai/gpt-oss-20b** via **Groq API**.")
+    st.image("https://cdn-icons-png.flaticon.com/512/4712/4712109.png", width=100)
+    st.title("Control Panel")
+    st.markdown("---")
+    st.markdown("✨ **Developer:** Shipo")
+    st.markdown("🚀 **Model:** `openai/gpt-oss-120b`")
+    st.markdown("⚡ **Status:** Active & Ready")
+    st.markdown("---")
     
-    if st.button("🔄 Clear Chat History"):
+    # Clear Chat History Button
+    if st.button("🗑️ Clear Chat History"):
         st.session_state.chat_history = []
         st.rerun()
+        
+    st.markdown("---")
+    st.caption("A smart AI-powered assistant built with Streamlit & LangChain.")
 
 # --- Main App Header ---
-st.header("💬 Shipo's Groq-Powered Chatbot", divider='rainbow')
+st.markdown("<h1 style='text-align: center;'>💬 Shipo's AI Chatbot</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #8b949e;'>Ask me anything, and let's start a conversation! 🚀</p>", unsafe_allow_html=True)
+st.markdown("---")
 
 # Initialize session state for chat history
 if "chat_history" not in st.session_state:
@@ -39,8 +95,8 @@ if not groq_api_key:
     st.error("⚠️ GROQ_API_KEY not found in environment variables or .env file.")
 else:
     llm = ChatGroq(
-        model="openai/gpt-oss-20b",  # Active Groq model ID
-        temperature=0.0,
+        model="openai/gpt-oss-120b",  # Working model
+        temperature=0.3,
         groq_api_key=groq_api_key
     )
 
@@ -64,7 +120,7 @@ else:
         # Generate LLM response with a loading spinner
         with st.spinner("Thinking..."):
             messages = [
-                SystemMessage(content="You are a helpful assistant."),
+                SystemMessage(content="You are a helpful, smart, and friendly assistant."),
                 *st.session_state.chat_history
             ]
             
