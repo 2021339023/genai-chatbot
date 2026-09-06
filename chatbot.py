@@ -70,14 +70,14 @@ with st.sidebar:
     st.title("AI Assistant Settings")
     
     st.markdown("""
-        Hello! I'm your AI Chatbot, powered by **llama-3.1-8b-instant** via the **Groq API**.
+        Hello! I'm your AI Chatbot, powered by **llama-4-scout-17b-16e-instruct** via the **Groq API**.
         
         *Feel free to ask me anything!*
     """)
     
     # You could add user-configurable options here later, like temperature.
     st.subheader("Model Details")
-    st.info(f"Model: `llama-3.1-8b-instant`")
+    st.info(f"Model: `llama-4-scout-17b-16e-instruct`")
     
     # Add a clear way to reset the chat
     if st.button("🔄 Clear Chat History"):
@@ -99,7 +99,7 @@ if not groq_api_key:
     st.error("GROQ_API_KEY not found. Please set it in your environment variables.")
 else:
     llm = ChatGroq(
-        model="llama-3.1-8b-instant",
+        model="llama-4-scout-17b-16e-instruct",
         temperature=0.0,
         groq_api_key=groq_api_key # Pass key explicitly
     )
