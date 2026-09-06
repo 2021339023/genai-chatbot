@@ -70,7 +70,7 @@ with st.sidebar:
     st.title("AI Assistant Settings")
     
     st.markdown("""
-        Hello! I'm your AI Chatbot, powered by **llama-4-scout-17b-16e-instruct** via the **Groq API**.
+        Hello! I'm your AI Chatbot, powered by **meta-llama/llama-4-scout-17b-16e-instruct** via the **Groq API**.
         
         *Feel free to ask me anything!*
     """)
